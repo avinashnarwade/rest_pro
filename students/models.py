@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-
+# this is model class 
 class Student(models.Model):
     student_id = models.CharField(max_length=10)
     name = models.CharField(max_length=50)
