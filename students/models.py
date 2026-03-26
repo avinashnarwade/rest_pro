@@ -9,6 +9,6 @@ class Student(models.Model):
     branch = models.CharField(max_length=20)
     
     def __str__(self):
-        return self.name
+        return self.name 
     
     
