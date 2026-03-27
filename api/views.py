@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 # Create your views here.
 from rest_framework.views import APIView
 from employees.models import Employee
+from django.http import Http404 
 @api_view(['GET','POST'])
 def studentsView(request):
    
@@ -64,4 +65,15 @@ class Employees(APIView):
         
         
             
-        
+class EmployeeDetail(APIView):
+    def get_object(self,pk):
+        try:
+            return Employee.objects.get(pk=pk)
+        except Employee.DoesNotExist:
+            raise Http404
+    def get(self,request,pk):
+        employee = self.get_object(pk)
+        serializer = EmployeeSerializer(employee)
+        return Response(serializer.data,status=status.HTTP_200_OK) 
+    
+            
